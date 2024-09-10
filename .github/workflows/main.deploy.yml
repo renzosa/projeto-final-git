@@ -46,5 +46,5 @@ jobs:
           docker pull ${{ steps.login-ecr.outputs.registry }}/pet-app:${{ github.sha }}
           docker stop pet-app || true
           docker rm pet-app || true
-          docker run -d --name pet-app -p 80:5000 ${{ steps.login-ecr.outputs.registry }}/pet-app:${{ github.sha }}
+          docker run -d --name pet-app -p 80:5000 -v ~/pet-app-data:/app/dados ${{ steps.login-ecr.outputs.registry }}/pet-app:${{ github.sha }}
         '
