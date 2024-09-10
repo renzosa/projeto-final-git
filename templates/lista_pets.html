@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Pets</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-4">Lista de Pets</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Peso</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pet in pets %}
+        <tr>
+          <td>{{ pet['nome'] }}</td>
+          <td>{{ pet['idade'] }} anos</td>
+          <td>{{ pet['peso'] }} kg</td>
+          <td>
+            <a href="{{ url_for('visualizar_pet', id=pet['id']) }}" class="btn btn-sm btn-info">Visualizar</a>
+            <a href="{{ url_for('editar_pet', id=pet['id']) }}" class="btn btn-sm btn-warning">Editar</a>
+            <a href="{{ url_for('excluir_pet', id=pet['id']) }}" class="btn btn-sm btn-danger"
+              onclick="return confirm('Tem certeza que deseja excluir este pet?');">Excluir</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="{{ url_for('adicionar_pet') }}" class="btn btn-primary">Adicionar Novo Pet</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
